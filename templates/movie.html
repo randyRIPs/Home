@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>電影查詢</title>
+</head>
+<body>
+    <h2>電影關鍵字查詢</h2>
+    <form method="POST">
+        <input type="text" name="keyword" placeholder="輸入電影名稱" required>
+        <button type="submit">查詢</button>
+    </form>
+
+    {% if result %}
+        <ul>
+        {% for movie in result %}
+            <li>
+                <strong>{{ movie.title }}</strong> — {{ movie.date }} <br>
+                <a href="{{ movie.url }}" target="_blank">查看</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% elif request.method == 'POST' %}
+        <p>查無資料</p>
+    {% endif %}
+</body>
+</html>
